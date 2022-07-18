@@ -4,9 +4,9 @@ const {
   insertMultipleTodo,
   getTodoById,
   getAllTodos,
+  deleteTodo,
 } = require("../controller/todoController.js");
 const { updateOne } = require("../models/todoModel.js");
-const Todo = require("../models/todoModel.js");
 
 const router = express.Router();
 
@@ -26,14 +26,6 @@ router.post("/all", insertMultipleTodo);
 router.put("/:id", updateOne);
 
 // Delete todo
-router.delete("/:id", (req, res) => {
-  Todo.deleteOne({ _id: req.params.id })
-    .then(() => {
-      res.status(200).json({ result: "Todo deleted successfully" });
-    })
-    .catch(() => {
-      res.status(500).json({ error: "A server side error occurred" });
-    });
-});
+router.delete("/:id", deleteTodo);
 
 module.exports = router;
