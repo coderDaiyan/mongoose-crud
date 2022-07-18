@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const todoHandler = require("./routes/todoHandler.js");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
+const cors = require("cors");
 
 const app = express();
 
@@ -12,6 +13,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/todo", todoHandler);
 

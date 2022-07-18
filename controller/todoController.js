@@ -42,6 +42,7 @@ const updateTodo = (req, res) => {
 };
 
 const getAllTodos = (req, res) => {
+  console.log(req.headers["authorization"]);
   Todo.find({ status: "active" })
     .then((data) => {
       res.status(200).json({ result: data });
